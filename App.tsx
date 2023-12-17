@@ -8,6 +8,10 @@ import CheckPeopleScreen from './screens/CheckPeopleScreen';
 import Fontawesome from 'react-native-vector-icons/FontAwesome5';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width/393;
+const windowHeight = Dimensions.get('window').height/852;
 
 const Tab = createBottomTabNavigator()
 
@@ -15,14 +19,36 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={{
+        tabBarStyle: {
+          backgroundColor: 'white',
+          position: 'absolute',
+          height: windowHeight*91,
+          borderTopRightRadius: 20,
+          borderTopLeftRadius: 20,
+          overflow: 'hidden',
+          borderWidth: 1,
+          borderTopWidth: 1,
+          borderTopColor: 'black',
+          borderColor: 'black'          
+        },
         tabBarShowLabel: false,
         headerShown: false,
-        
+        tabBarActiveTintColor:'white',
+        tabBarActiveBackgroundColor: '#525CC9',
+        tabBarItemStyle:{
+          marginLeft: windowWidth*17,
+          marginRight: windowWidth*17,
+          marginTop: windowHeight*4,
+          width: windowWidth*64,
+          height: windowHeight*64,
+          borderRadius: 100,
+        },
       }}>
         <Tab.Screen 
         name="ChoosePlace" 
         component={ChoosePlaceScreen} 
         options={{
+         
           tabBarIcon: ({color, size}) => (
             <Fontawesome name="map-pin" color={color} size={size} />
           ),
