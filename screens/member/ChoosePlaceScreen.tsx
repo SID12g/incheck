@@ -1,8 +1,7 @@
-import { Platform, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
+import { SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
 import { Dimensions } from 'react-native';
 import Folder from "../../components/member/ChoosePlace/Folder";
-import StackNavigator from "../../components/navigator/StackNavigator";
 import LocationSelectButton from "../../components/member/ChoosePlace/LocationSelectButton";
 
 

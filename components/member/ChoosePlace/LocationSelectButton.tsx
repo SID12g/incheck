@@ -1,8 +1,6 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Fontawesome from 'react-native-vector-icons/FontAwesome';
 import { Dimensions } from 'react-native';
-import { ParamListBase, useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;

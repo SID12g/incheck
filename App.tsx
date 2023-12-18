@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-
 import { Dimensions } from 'react-native';
 import BottomTabNavigator from './components/navigator/BottomTabNavigator';
-import StackNavigator from './components/navigator/StackNavigator';
 import { createStackNavigator } from '@react-navigation/stack';
 import MemberChoosePlaceScreen from './screens/member/ChoosePlaceScreen';
-import MemberHomeScreen from './screens/member/HomeScreen';
-import MemberCheckPeopleScreen from './screens/member/CheckPeopleScreen';
 import FolderB1Floor from './screens/member/ChoosePlace/MainBuilding/FolderB1Floor';
 
 const Stack = createStackNavigator()
