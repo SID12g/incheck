@@ -2,18 +2,16 @@ import { Platform, SafeAreaView, ScrollView } from "react-native";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Dimensions } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
-import StarLocation from "../components/HomeScreen/StarLocation";
+import StarLocation from "../../components/member/HomeScreen/StarLocation";
 
 
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
-export default function HomeScreen() {
+export default function MemberHomeScreen() {
     return (
-        <SafeAreaView>
-            <View style={styles.root}>
-                <Image style={styles.logo} source={require('../public/image/incheck_logo.png')} />
-            </View>
+        <SafeAreaView style={styles.root}>
+                <Image style={styles.logo} source={require('../../public/image/incheck_logo.png')} />
             <View style={styles.locationContainer}>
                 <Text style={styles.explain}>이현명님의 현재위치</Text>
                 <Text style={styles.locationDetail}>본관 3층</Text>
@@ -43,7 +41,8 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     root: {
         backgroundColor: 'white',
-        flex: 1,
+        width: windowWidth*393,
+        height: windowHeight*852,
     },
     logo: {
         width: windowWidth * 31.8,
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
         height: Platform.select({ios: windowHeight * 204, android: windowHeight * 210}),
         backgroundColor: '#525CC9',
         borderRadius: 25,
-        marginTop: windowHeight * 82,
+        marginTop: windowHeight * 22,
         marginLeft: 'auto',
         marginRight: 'auto'
     },

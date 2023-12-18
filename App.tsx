@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from './screens/HomeScreen';
-import SettingScreen from './screens/SettingScreen';
-import ChoosePlaceScreen from './screens/ChoosePlaceScreen';
-import CheckPeopleScreen from './screens/CheckPeopleScreen';
 import Fontawesome from 'react-native-vector-icons/FontAwesome5';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { Dimensions } from 'react-native';
+import MemberChoosePlaceScreen from './screens/member/ChoosePlaceScreen';
+import MemberHomeScreen from './screens/member/HomeScreen';
+import MemberCheckPeopleScreen from './screens/member/CheckPeopleScreen';
+import MemberSettingScreen from './screens/member/SettingScreen';
 
 const windowWidth = Dimensions.get('window').width/393;
 const windowHeight = Dimensions.get('window').height/852;
@@ -46,7 +46,7 @@ export default function App() {
       }}>
         <Tab.Screen 
         name="ChoosePlace" 
-        component={ChoosePlaceScreen} 
+        component={MemberChoosePlaceScreen} 
         options={{
          
           tabBarIcon: ({color, size}) => (
@@ -55,7 +55,7 @@ export default function App() {
         }} />
         <Tab.Screen 
         name="Home" 
-        component={HomeScreen} 
+        component={MemberHomeScreen} 
         options={{
           tabBarIcon: ({color, size}) => (
             <Octicons name="home" color={color} size={size} />
@@ -63,7 +63,7 @@ export default function App() {
         }} />
         <Tab.Screen 
         name="CheckPeople" 
-        component={CheckPeopleScreen} 
+        component={MemberCheckPeopleScreen} 
         options={{
           tabBarIcon: ({color, size}) => (
             <Entypo name="bar-graph" color={color} size={size} />
@@ -71,7 +71,7 @@ export default function App() {
         }} />
         <Tab.Screen 
         name="Setting" 
-        component={SettingScreen} 
+        component={MemberSettingScreen} 
         options={{
           tabBarIcon: ({color, size}) => (
             <Octicons name="three-bars" color={color} size={size} />
