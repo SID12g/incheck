@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator()
 
 export default function BottomTabNavigator(){
     return(
-        <Tab.Navigator screenOptions={{
+        <Tab.Navigator initialRouteName='Home' screenOptions={{
             tabBarStyle: {
               backgroundColor: 'white',
               position: 'absolute',
@@ -28,7 +28,7 @@ export default function BottomTabNavigator(){
               borderWidth: 1,
               borderTopWidth: 1,
               borderTopColor: 'black',
-              borderColor: 'black'          
+              borderColor: 'black',        
             },
             tabBarShowLabel: false,
             headerShown: false,
@@ -47,7 +47,7 @@ export default function BottomTabNavigator(){
             name="ChoosePlace" 
             component={MemberChoosePlaceScreen} 
             options={{
-             
+              
               tabBarIcon: ({color, size}) => (
                 <Fontawesome name="map-pin" color={color} size={size} />
               ),
@@ -56,6 +56,7 @@ export default function BottomTabNavigator(){
             name="Home" 
             component={MemberHomeScreen} 
             options={{
+              
               tabBarIcon: ({color, size}) => (
                 <Octicons name="home" color={color} size={size} />
               ),

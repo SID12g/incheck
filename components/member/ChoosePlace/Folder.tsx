@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import { Dimensions } from 'react-native';
 import { ParamListBase ,useNavigation } from "@react-navigation/native";
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;

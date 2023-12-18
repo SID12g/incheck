@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MemberChoosePlaceScreen from './screens/member/ChoosePlaceScreen';
 import MemberHomeScreen from './screens/member/HomeScreen';
 import MemberCheckPeopleScreen from './screens/member/CheckPeopleScreen';
-import FolderB1Folder from './screens/member/ChoosePlace/FolderB1Floor';
+import FolderB1Floor from './screens/member/ChoosePlace/MainBuilding/FolderB1Floor';
 
 const Stack = createStackNavigator()
 
@@ -24,7 +24,7 @@ export default function App() {
       }}>
         <Stack.Screen name="BottomTab" component={BottomTabNavigator} />
         <Stack.Screen name="ChoosePlace" component={MemberChoosePlaceScreen} />
-        <Stack.Screen name="B1Floor" component={FolderB1Folder} />
+        <Stack.Screen name="B1Floor" component={FolderB1Floor} />
       </Stack.Navigator>
     </NavigationContainer>
   );

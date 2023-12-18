@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import MemberChoosePlaceScreen from "../../screens/member/ChoosePlaceScreen";
-import FolderB1Folder from "../../screens/member/ChoosePlace/FolderB1Floor";
+import FolderB1Folder from "../../screens/member/ChoosePlace/MainBuilding/FolderB1Floor";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNavigator  from "./BottomTabNavigator";
 
