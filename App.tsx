@@ -1,83 +1,31 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Fontawesome from 'react-native-vector-icons/FontAwesome5';
-import Octicons from 'react-native-vector-icons/Octicons';
-import Entypo from 'react-native-vector-icons/Entypo';
+
 import { Dimensions } from 'react-native';
+import BottomTabNavigator from './components/navigator/BottomTabNavigator';
+import StackNavigator from './components/navigator/StackNavigator';
+import { createStackNavigator } from '@react-navigation/stack';
 import MemberChoosePlaceScreen from './screens/member/ChoosePlaceScreen';
 import MemberHomeScreen from './screens/member/HomeScreen';
 import MemberCheckPeopleScreen from './screens/member/CheckPeopleScreen';
-import MemberSettingScreen from './screens/member/SettingScreen';
+import FolderB1Folder from './screens/member/ChoosePlace/FolderB1Floor';
 
-const windowWidth = Dimensions.get('window').width/393;
-const windowHeight = Dimensions.get('window').height/852;
+const Stack = createStackNavigator()
 
-const Tab = createBottomTabNavigator()
+const windowWidth = Dimensions.get('window').width / 393;
+const windowHeight = Dimensions.get('window').height / 852;
+
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={{
-        tabBarStyle: {
-          backgroundColor: 'white',
-          position: 'absolute',
-          height: windowHeight*91,
-          borderTopRightRadius: 20,
-          borderTopLeftRadius: 20,
-          overflow: 'hidden',
-          borderWidth: 1,
-          borderTopWidth: 1,
-          borderTopColor: 'black',
-          borderColor: 'black'          
-        },
-        tabBarShowLabel: false,
-        headerShown: false,
-        tabBarActiveTintColor:'white',
-        tabBarActiveBackgroundColor: '#525CC9',
-        tabBarItemStyle:{
-          marginLeft: windowWidth*17,
-          marginRight: windowWidth*17,
-          marginTop: windowHeight*4,
-          width: windowWidth*64,
-          height: windowHeight*64,
-          borderRadius: 100,
-        },
+      <Stack.Navigator screenOptions={{
+        headerShown: false
       }}>
-        <Tab.Screen 
-        name="ChoosePlace" 
-        component={MemberChoosePlaceScreen} 
-        options={{
-         
-          tabBarIcon: ({color, size}) => (
-            <Fontawesome name="map-pin" color={color} size={size} />
-          ),
-        }} />
-        <Tab.Screen 
-        name="Home" 
-        component={MemberHomeScreen} 
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <Octicons name="home" color={color} size={size} />
-          ),
-        }} />
-        <Tab.Screen 
-        name="CheckPeople" 
-        component={MemberCheckPeopleScreen} 
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <Entypo name="bar-graph" color={color} size={size} />
-          ),
-        }} />
-        <Tab.Screen 
-        name="Setting" 
-        component={MemberSettingScreen} 
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <Octicons name="three-bars" color={color} size={size} />
-          ),
-        }} />
-      </Tab.Navigator>
+        <Stack.Screen name="BottomTab" component={BottomTabNavigator} />
+        <Stack.Screen name="ChoosePlace" component={MemberChoosePlaceScreen} />
+        <Stack.Screen name="B1Floor" component={FolderB1Folder} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
