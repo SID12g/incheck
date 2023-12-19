@@ -11,8 +11,8 @@ const windowHeight = Dimensions.get('window').height / 852;
 
 export default function MemberSettingScreen() {
     return (
-        <ScrollView>
-            <SafeAreaView style={styles.root}>
+        <SafeAreaView style={styles.root}>
+            <ScrollView>
                 <View>
                     <View style={styles.topLine}>
                         <Text style={styles.title}>설정</Text>
@@ -23,8 +23,8 @@ export default function MemberSettingScreen() {
                     <UserInformation />
                     <SettingComponent />
                 </View>
-            </SafeAreaView>
-        </ScrollView>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 

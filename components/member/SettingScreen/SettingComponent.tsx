@@ -8,17 +8,15 @@ const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
 export default function SettingComponent() {
-    function openGithub(){
+    function openGithub() {
         Linking.openURL('https://github.com/SID12g/incheck')
     }
     return (
         <View>
-             <TouchableOpacity>
-                        <View style={styles.directBtn}>
-                            <Feather style={styles.directIcon} name='external-link' color='black' size={24} />
-                            <Text style={styles.directText}>인체크 사용방법 확인하기</Text>
-                        </View>
-                    </TouchableOpacity>
+            <TouchableOpacity style={styles.directBtn}>
+                    <Feather style={styles.directIcon} name='external-link' color='black' size={24} />
+                    <Text style={styles.directText}>인체크 사용방법 확인하기</Text>
+            </TouchableOpacity>
             <TouchableOpacity onPress={openGithub}>
                 <View style={styles.setComponent}>
                     <View style={styles.setComponentTextWrap}>
@@ -35,6 +33,11 @@ export default function SettingComponent() {
                         <Text style={styles.setComponentText}>앱 정보</Text>
                     </View>
                     <Feather style={styles.setComponentArrow} name="chevron-right" color='black' size={24} />
+                </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <View style={styles.getOutBtn}>
+                    <Text style={styles.getOutText}>그룹에서 나가기</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
         marginLeft: windowWidth * 47,
     },
     setComponentIcon: {
-        
+
     },
     setComponentText: {
         fontSize: 16,
@@ -89,5 +92,20 @@ const styles = StyleSheet.create({
     },
     setComponentArrow: {
         alignSelf: 'center',
+    },
+    getOutBtn: {
+        width: windowWidth * 366,
+        height: windowHeight * 60,
+        backgroundColor: '#F25F5F',
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginTop: windowHeight * 20,
+    },
+    getOutText: {
+        fontSize: 20,
+        fontFamily: 'Pretendard-Bold',
+        color: 'white',
     },
 })
