@@ -4,7 +4,6 @@ import { Dimensions } from 'react-native';
 import Folder from "../../components/member/ChoosePlace/Folder";
 import LocationSelectButton from "../../components/member/ChoosePlace/LocationSelectButton";
 
-
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
