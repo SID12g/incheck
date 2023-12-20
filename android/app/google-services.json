@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "630749287407",
+    "project_id": "incheck-b3c29",
+    "storage_bucket": "incheck-b3c29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630749287407:android:620526467fd749c7a31c1a",
+        "android_client_info": {
+          "package_name": "com.incheck"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXTlsQK0xbmVQFv8JKvFylzDjFAevRt_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
