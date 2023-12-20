@@ -1,28 +1,34 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Dimensions } from 'react-native';
+import { CommonActions, ParamListBase, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { LoginUserContext } from "../../../store/LoginUser-context";
+import { useContext } from "react";
 
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
 export default function UserInformation() {
+    const LoginUserCtx = useContext(LoginUserContext)
+    const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
     return (
         <View>
             <View style={styles.profileWrap}>
                 <View style={styles.profileImg}></View>
                 <View style={styles.textWrap}>
-                    <Text style={styles.userName}>조성민</Text>
-                    <Text style={styles.userEmail}>csm1219csm1219@gmail.com</Text>
+                    <Text style={styles.userName}>{LoginUserCtx.name}</Text>
+                    <Text style={styles.userEmail}>{LoginUserCtx.phoneNumber}</Text>
                 </View>
             </View>
             <View style={styles.userHomeTownWrap}>
                 <Text style={styles.frameText}>소속</Text>
                 <View style={styles.userHomeTown}>
                     <Text style={styles.homeTownTitle}>소속</Text>
-                    <Text style={styles.homeTownContent}>1학년 4반</Text>
+                    <Text style={styles.homeTownContent}>{LoginUserCtx.studentId[0]}학년 {LoginUserCtx.studentId[1]}반</Text>
                 </View>
                 <View style={styles.userHomeTown}>
                     <Text style={styles.homeTownTitle}>번호</Text>
-                    <Text style={styles.homeTownContent}>27번</Text>
+                    <Text style={styles.homeTownContent}>{LoginUserCtx.studentId[2]}{LoginUserCtx.studentId[3]}번</Text>
                 </View>
             </View>
         </View>

@@ -2,69 +2,67 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 interface User {
     name: string;
-    grade: number;
-    class: number;
-    number: number;
-    email: string;
+    studentId: string;
+    phoneNumber: string;
     subLocation: string;
     location: string;
+    token: string;
     favoriteLocation: string[];
     changeUserName: any;
-    changeUserGrade: any;
-    changeUserClass: any;
-    changeUserNumber: any;
-    changeUserEmail: any;
+    changeUserStudentId: any;
+    changeUserPhoneNumber: any;
+    changeUserSubLocation: any;
     changeUserLocation: any;
+    changeUserToken: any;
     addUserFavoriteLocation: any;
     subtUserFavoriteLocation: any;
 }
 
 export const LoginUserContext = createContext({
     name: "조성민",
-    grade: 1,
-    class: 4,
-    number: 27,
-    email: "sid12g@naver.com",
+    studentId: '1427',
+    phoneNumber: '01093563160',
     subLocation: '본관 3층',
     location: "104class",
+    token: 'null',
     favoriteLocation: ['1학년 4반', '물 화장실'],
     changeUserName: (name: string) => { },
-    changeUserGrade: (grade: number) => { },
-    changeUserClass: (userClass: number) => { },
-    changeUserNumber: (number: number) => { },
-    changeUserEmail: (email: string) => { },
+    changeUserStudentId: (stuId: string) => { },
+    changeUserPhoneNumber: (num: string) => { },
+    changeUserSubLocation: (location: string) => { },
     changeUserLocation: (location: string) => { },
+    changeUserToken: (token: string) => { },
     addUserFavoriteLocation: (favoriteLocation: string) => { },
     subtUserFavoriteLocation: (favoriteLocation: string) => { },
 });
 
 function UserLoginContextProvider({ children }: any) {
-    const [userName, setUserName] = useState('조성민')
-    const [userGrade, setUserGrade] = useState(1)
-    const [userClass, setUserClass] = useState(4)
-    const [userNumber, setUserNumber] = useState(27)
-    const [userEmail, setUserEmail] = useState('sid12g@naver.com')
+    const [userName, setUserName] = useState('')
+    const [userStudentId, setUserStudentId] = useState('')
+    const [userPhoneNumber, setUserPhoneNumber] = useState('')
     const [userSubLocation, setUserSubLocation] = useState('본관 3층')
     const [userLocation, setUserLocation] = useState('1학년 4반')
+    const [userToken, setUserToken] = useState('null')
     const [userFavoriteLocation, setUserFavoriteLocation] = useState(['1학년 4반', '물 화장실'])
+    
 
     function changeUserName(name: string) {
         setUserName(name)
     }
-    function changeUserGrade(grade: number) {
-        setUserGrade(grade)
+    function changeUserStudentId(stuId: string) {
+        setUserStudentId(stuId)
     }
-    function changeUserClass(userClass: number) {
-        setUserClass(userClass)
+    function changeUserPhoneNumber(num: string) {
+        setUserPhoneNumber(num)
     }
-    function changeUserNumber(number: number) {
-        setUserNumber(number)
-    }
-    function changeUserEmail(email: string) {
-        setUserEmail(email)
+    function changeUserSubLocation(location: string) {
+        setUserSubLocation(location)
     }
     function changeUserLocation(location: string) {
         setUserLocation(location)
+    }
+    function changeUserToken(token: string){
+        setUserToken(token)
     }
     function addUserFavoriteLocation(favoriteLocation: string) {
         setUserFavoriteLocation(
@@ -76,19 +74,18 @@ function UserLoginContextProvider({ children }: any) {
 
     const value: User = {
         name: userName,
-        grade: userGrade,
-        class: userClass,
-        number: userNumber,
-        email: userEmail,
+        studentId: userStudentId,
+        phoneNumber: userPhoneNumber,
         subLocation: userSubLocation,
         location: userLocation,
+        token: userToken,
         favoriteLocation: userFavoriteLocation,
         changeUserName: changeUserName,
-        changeUserGrade: changeUserGrade,
-        changeUserClass: changeUserClass,
-        changeUserNumber: changeUserNumber,
-        changeUserEmail: changeUserEmail,
+        changeUserStudentId: changeUserStudentId,
+        changeUserPhoneNumber: changeUserPhoneNumber,
+        changeUserSubLocation: changeUserSubLocation,
         changeUserLocation: changeUserLocation,
+        changeUserToken: changeUserToken,
         addUserFavoriteLocation: addUserFavoriteLocation,
         subtUserFavoriteLocation: subtUserFavoriteLocation,
     }

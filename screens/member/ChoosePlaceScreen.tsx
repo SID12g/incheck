@@ -19,7 +19,7 @@ export default function MemberChoosePlaceScreen() {
                 <View style={styles.locationWrap}>
                     <View style={styles.frame}>
                         <Text style={styles.frameText}>본관</Text>
-                        <Folder Icon='🍚' subTitle='급식실' Title='B1층' navi='B1Floor' />
+                        <LocationSelectButton Icon='🍚' subTitle='급식실' Title='B1층' navi='B1Floor' />
                         <Folder Icon='🏫' subTitle='교무실, 특별실' Title='1층' navi='B1Floor' />
                         <Folder Icon='🏫' subTitle='2학년 교실, 특별실' Title='2층' navi='B1Floor' />
                         <Folder Icon='🏫' subTitle='1학년 교실, 특별실' Title='3층' navi='B1Floor' />

@@ -9,25 +9,12 @@ import auth from '@react-native-firebase/auth'
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
-
-
-
-
-
 export default function LoginScreen() {
     const [idToken, setIdToken] = useState('')
-    // const LoginUserCtx = useContext(LoginUserContext)
-    // const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
-    // function clickLogin() {
-    //     console.log(LoginUserCtx)
-    //     LoginUserCtx.changeUserEmail('aaa')
-    //     console.log(LoginUserCtx)
-    //     navigation.dispatch(
-    //         CommonActions.reset({
-    //             routes: [{ name: 'BottomTab' }]
-    //         })
-    //     ) // 로그인 후 로그인 화면으로 돌아가지 못하게 함.
-    // }
+    const LoginUserCtx = useContext(LoginUserContext)
+    const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+
+   
     useEffect(() => {
         GoogleSignin.configure({
             webClientId: '630749287407-ro1v0dj6bkjuur3je2l3i8fa4tvhdbln.apps.googleusercontent.com',
@@ -36,14 +23,24 @@ export default function LoginScreen() {
 
 
     const onPressGoogleBtn = async () => {
-        await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+        try{
+            await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
         const { idToken } = await GoogleSignin.signIn();
         console.log('idToekn : ', idToken);
         if (idToken) {
             setIdToken(idToken);
+            LoginUserCtx.changeUserToken(idToken)
+            navigation.dispatch(
+                CommonActions.reset({
+                    routes: [{ name: 'AddUserInformation' }]
+                })
+            ) // 로그인 후 로그인 화면으로 돌아가지 못하게 함.
         }
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
         const res = await auth().signInWithCredential(googleCredential);
+        } catch(error) {
+            console.log("google login error", error)
+        }
     };
 
 
