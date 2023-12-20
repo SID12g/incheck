@@ -18,17 +18,17 @@ const LoginUser = {name: 'userName', grade: 1, class: 4, number: 27, location: '
 
 export default function App() {
   return (
-    // true ? 
-    // (
-    //   <LoginScreen LoginUser={LoginUser} />
-    // ) : 
+    true ? 
+    (
+      <LoginScreen />
+    ) : 
     (
       <LoginUserContext>
         <NavigationContainer>
       <Stack.Navigator screenOptions={{
         headerShown: false
       }}>
-        <Stack.Screen name='Login' component={LoginScreen} />
+        {/* <Stack.Screen name='Login' component={LoginScreen} /> */}
         <Stack.Screen name="BottomTab" component={BottomTabNavigator} />
         <Stack.Screen name="ChoosePlace" component={MemberChoosePlaceScreen} />
         <Stack.Screen name="B1Floor" component={FolderB1Floor} />

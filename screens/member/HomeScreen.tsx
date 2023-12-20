@@ -16,7 +16,7 @@ export default function MemberHomeScreen() {
                 <Image style={styles.logo} source={require('../../public/image/incheck_logo.png')} />
             <View style={styles.locationContainer}>
                 <Text style={styles.explain}>{LoginUserCtx.name}님의 현재위치</Text>
-                <Text style={styles.locationDetail}>{}</Text>
+                <Text style={styles.locationDetail}>{LoginUserCtx.subLocation}</Text>
                 <Text style={styles.location}>{LoginUserCtx.location}</Text>
                 <View style={styles.bottomUtil}>
                     <View style={styles.changeLocation}>
@@ -29,9 +29,12 @@ export default function MemberHomeScreen() {
                     showsHorizontalScrollIndicator = {false}
                    >
                         <View style={styles.starLocationWrap}>
-                        <StarLocation>1학년 4반</StarLocation>
-                        <StarLocation>302호</StarLocation>
-                        <StarLocation>물, 화장실</StarLocation>
+                        {
+                            LoginUserCtx.favoriteLocation.map((a, i)=>{
+                                return (<StarLocation key={i}>{a}</StarLocation>)
+                            })
+                        }
+
                         </View>
                     </ScrollView>
                 </View>

@@ -17,8 +17,8 @@
 		4DBE6B4AAEFD4C9DB2C4A184 /* Pretendard-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF4399812848BCA1D44F89 /* Pretendard-ExtraLight.ttf */; };
 		5298A3E0F9BA454E9FA95030 /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C542D97B8EFE428390F2EF0D /* Pretendard-Regular.ttf */; };
 		5618A4CFDD8C4A40A22C6EB6 /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98687C1E62D24478A35BBBB4 /* Pretendard-Medium.ttf */; };
-		5F695D3E2B326219005EC398 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F695D3D2B326219005EC398 /* GoogleService-Info.plist */; };
 		5F695D402B3264C0005EC398 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 5F695D3F2B3264BF005EC398 /* main.jsbundle */; };
+		5F695D462B32DC95005EC398 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F695D452B32DC95005EC398 /* GoogleService-Info.plist */; };
 		671AD4AE9874435C9E7F91EA /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA7BF8AFC5F940FDB74C098A /* Pretendard-Bold.ttf */; };
 		6F9A4A6C9EF2407BA7B5D3A6 /* Pretendard-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 836B4FFD54984F85ADE62902 /* Pretendard-Thin.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-incheck-incheckTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-incheck-incheckTests.a */; };
@@ -53,8 +53,8 @@
 		5709B34CF0A7D63546082F79 /* Pods-incheck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incheck.release.xcconfig"; path = "Target Support Files/Pods-incheck/Pods-incheck.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-incheck-incheckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incheck-incheckTests.debug.xcconfig"; path = "Target Support Files/Pods-incheck-incheckTests/Pods-incheck-incheckTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-incheck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-incheck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F695D3D2B326219005EC398 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F695D3F2B3264BF005EC398 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		5F695D452B32DC95005EC398 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F99BF752B2C7A5F00589859 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		5F99BF762B2C7A5F00589859 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		5F99BF772B2C7A5F00589859 /* FontAwesome6_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome6_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Regular.ttf"; sourceTree = "<group>"; };
@@ -127,8 +127,8 @@
 		13B07FAE1A68108700A75B9A /* incheck */ = {
 			isa = PBXGroup;
 			children = (
+				5F695D452B32DC95005EC398 /* GoogleService-Info.plist */,
 				5F695D3F2B3264BF005EC398 /* main.jsbundle */,
-				5F695D3D2B326219005EC398 /* GoogleService-Info.plist */,
 				5F99BF882B2C7A6800589859 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -329,12 +329,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F695D462B32DC95005EC398 /* GoogleService-Info.plist in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				AB00089537C940E6A6E25526 /* Pretendard-Black.ttf in Resources */,
 				671AD4AE9874435C9E7F91EA /* Pretendard-Bold.ttf in Resources */,
 				D35F31B8BAB640FD844DC80B /* Pretendard-ExtraBold.ttf in Resources */,
-				5F695D3E2B326219005EC398 /* GoogleService-Info.plist in Resources */,
 				4DBE6B4AAEFD4C9DB2C4A184 /* Pretendard-ExtraLight.ttf in Resources */,
 				47A0399898224417A14AD61C /* Pretendard-Light.ttf in Resources */,
 				5618A4CFDD8C4A40A22C6EB6 /* Pretendard-Medium.ttf in Resources */,
