@@ -3,19 +3,21 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { Dimensions } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import StarLocation from "../../components/member/HomeScreen/StarLocation";
-
+import { useContext } from "react";
+import { LoginUserContext } from "../../store/LoginUser-context";
 
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
 export default function MemberHomeScreen() {
+    const LoginUserCtx = useContext(LoginUserContext)
     return (
         <SafeAreaView style={styles.root}>
                 <Image style={styles.logo} source={require('../../public/image/incheck_logo.png')} />
             <View style={styles.locationContainer}>
-                <Text style={styles.explain}>이현명님의 현재위치</Text>
-                <Text style={styles.locationDetail}>본관 3층</Text>
-                <Text style={styles.location}>1학년 4반</Text>
+                <Text style={styles.explain}>{LoginUserCtx.name}님의 현재위치</Text>
+                <Text style={styles.locationDetail}>{}</Text>
+                <Text style={styles.location}>{LoginUserCtx.location}</Text>
                 <View style={styles.bottomUtil}>
                     <View style={styles.changeLocation}>
                         <Text style={styles.changeLocationText}>위치변경</Text>
