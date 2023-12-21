@@ -1,11 +1,45 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Fontawesome from 'react-native-vector-icons/FontAwesome';
+import { CommonActions, ParamListBase, useNavigation } from "@react-navigation/native";
 import { Dimensions } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useContext, useEffect, useState, } from "react";
+import { LoginUserContext } from "../../../store/LoginUser-context";
 
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
 export default function LocationSelectButton({ Icon, subTitle, Title, navi }: { Icon: string, subTitle: string, Title: string, navi: string }) {
+    const [isFavorite, setIsFavorite] = useState<boolean>(false)
+    const LoginUserCtx = useContext(LoginUserContext)
+    const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+    useEffect(()=>{
+        async function setFav(){
+           await setIsFavorite(LoginUserCtx.favoriteLocation.includes(Title))
+        }
+        setFav()
+    })
+    
+    function pressSelectBtn(){
+        LoginUserCtx.changeUserLocation(Title)
+        LoginUserCtx.changeUserSubLocation(subTitle)
+        console.log(LoginUserCtx)
+    }
+
+    async function pressStarBtn(){
+        if(isFavorite) {
+            await LoginUserCtx.subtUserFavoriteLocation(Title)
+            await LoginUserCtx.subtUserFavoriteSubLocation(subTitle)
+            // console.log('true -> false')
+        } else {
+            await LoginUserCtx.addUserFavoriteLocation(Title)
+            await LoginUserCtx.addUserFavoriteSubLocation(subTitle)
+            // console.log('f -> t')
+        }
+
+        // console.log(LoginUserCtx)
+    }
+
     return (
 
         <View style={styles.locationWrap}>
@@ -17,9 +51,9 @@ export default function LocationSelectButton({ Icon, subTitle, Title, navi }: { 
                 </View>
                 <View style={styles.starAndBtnWrap}>
                     <TouchableOpacity>
-                        <Fontawesome style={styles.starBtn} name="star-o" color='white' size={20} />
+                        <Fontawesome onPress={pressStarBtn} style={styles.starBtn} name={isFavorite ? "star" : "star-o"} color='white' size={20} />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={pressSelectBtn}>
                         <View style={styles.selectBtn}>
                             <Text style={styles.selectBtnText}>선택</Text>
                         </View>

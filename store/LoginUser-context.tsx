@@ -8,6 +8,7 @@ interface User {
     location: string;
     token: string;
     favoriteLocation: string[];
+    favoriteSubLocation: string[];
     changeUserName: any;
     changeUserStudentId: any;
     changeUserPhoneNumber: any;
@@ -16,6 +17,8 @@ interface User {
     changeUserToken: any;
     addUserFavoriteLocation: any;
     subtUserFavoriteLocation: any;
+    addUserFavoriteSubLocation: any;
+    subtUserFavoriteSubLocation: any;
 }
 
 export const LoginUserContext = createContext({
@@ -26,6 +29,7 @@ export const LoginUserContext = createContext({
     location: "104class",
     token: 'null',
     favoriteLocation: ['1학년 4반', '물 화장실'],
+    favoriteSubLocation: [''],
     changeUserName: (name: string) => { },
     changeUserStudentId: (stuId: string) => { },
     changeUserPhoneNumber: (num: string) => { },
@@ -34,6 +38,8 @@ export const LoginUserContext = createContext({
     changeUserToken: (token: string) => { },
     addUserFavoriteLocation: (favoriteLocation: string) => { },
     subtUserFavoriteLocation: (favoriteLocation: string) => { },
+    addUserFavoriteSubLocation: (favoriteLocation: string) => { },
+    subtUserFavoriteSubLocation: (favoriteLocation: string) => { },
 });
 
 function UserLoginContextProvider({ children }: any) {
@@ -43,7 +49,8 @@ function UserLoginContextProvider({ children }: any) {
     const [userSubLocation, setUserSubLocation] = useState('본관 3층')
     const [userLocation, setUserLocation] = useState('1학년 4반')
     const [userToken, setUserToken] = useState('null')
-    const [userFavoriteLocation, setUserFavoriteLocation] = useState([''])
+    const [userFavoriteLocation, setUserFavoriteLocation] = useState<string[]>(['급식실'])
+    const [userFavoriteSubLocation, setUserFavoriteSubLocation] = useState<string[]>(['B1층'])
     
 
     function changeUserName(name: string) {
@@ -71,6 +78,14 @@ function UserLoginContextProvider({ children }: any) {
     function subtUserFavoriteLocation(favoriteLocation: string) {
         setUserFavoriteLocation((currentFavoriteLocation: string[]) => currentFavoriteLocation.filter(inputFavLoc => inputFavLoc !== favoriteLocation))
     }
+    function addUserFavoriteSubLocation(favoriteSubLocation: string) {
+        setUserFavoriteSubLocation(
+            (currentFavoriteSubLocation: string[]) => [...currentFavoriteSubLocation, favoriteSubLocation])
+    }
+    function subtUserFavoriteSubLocation(favoriteSubLocation: string) {
+        setUserFavoriteSubLocation((currentFavoriteSubLocation: string[]) => currentFavoriteSubLocation.filter(inputFavLoc => inputFavLoc !== favoriteSubLocation))
+    }
+    
 
     const value: User = {
         name: userName,
@@ -80,6 +95,7 @@ function UserLoginContextProvider({ children }: any) {
         location: userLocation,
         token: userToken,
         favoriteLocation: userFavoriteLocation,
+        favoriteSubLocation: userFavoriteSubLocation,
         changeUserName: changeUserName,
         changeUserStudentId: changeUserStudentId,
         changeUserPhoneNumber: changeUserPhoneNumber,
@@ -88,6 +104,8 @@ function UserLoginContextProvider({ children }: any) {
         changeUserToken: changeUserToken,
         addUserFavoriteLocation: addUserFavoriteLocation,
         subtUserFavoriteLocation: subtUserFavoriteLocation,
+        addUserFavoriteSubLocation: addUserFavoriteSubLocation,
+        subtUserFavoriteSubLocation: subtUserFavoriteSubLocation,
     }
     return <LoginUserContext.Provider value={value}>{children}</LoginUserContext.Provider>
 }

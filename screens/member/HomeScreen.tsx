@@ -6,12 +6,22 @@ import StarLocation from "../../components/member/HomeScreen/StarLocation";
 import { useContext } from "react";
 import { LoginUserContext } from "../../store/LoginUser-context";
 import { TouchableOpacity } from "react-native";
+import { CommonActions, ParamListBase, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
 export default function MemberHomeScreen() {
     const LoginUserCtx = useContext(LoginUserContext)
+    const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+    function pressSelectLocBtn(){
+        navigation.dispatch(
+            CommonActions.reset({
+                routes: [{ name: 'ChoosePlace' }]
+            })
+        )
+    }
     return (
         <SafeAreaView style={styles.root}>
             <View style={styles.logoWrap}>
@@ -25,7 +35,7 @@ export default function MemberHomeScreen() {
                 </View>
                 <View style={styles.bottomUtil}>
                     
-                    <TouchableOpacity style={styles.changeLocation}>
+                    <TouchableOpacity onPress={pressSelectLocBtn} style={styles.changeLocation}>
                         <Text style={styles.changeLocationText}>위치변경</Text>
                         <Entypo style={{}} name="chevron-right" color='white' size={windowWidth*14} />
                     </TouchableOpacity>
@@ -37,7 +47,7 @@ export default function MemberHomeScreen() {
                         <View style={styles.starLocationWrap}>
                             {
                                 LoginUserCtx.favoriteLocation.map((a, i) => {
-                                    return (<StarLocation key={i}>{a}</StarLocation>)
+                                    return (<StarLocation key={i} Title={a} SubTitle={LoginUserCtx.favoriteSubLocation[i]}></StarLocation>)
                                 })
                             }
 

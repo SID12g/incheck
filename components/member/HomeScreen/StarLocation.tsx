@@ -1,15 +1,27 @@
-import { View, Text, StyleSheet } from "react-native"
+import { useContext } from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { Dimensions } from 'react-native';
+import { LoginUserContext } from "../../../store/LoginUser-context";
 
 
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
-export default function StarLocation({ children }: any) {
+
+
+export default function StarLocation({ Title, SubTitle }:{Title: string, SubTitle: string}) {
+
+    const LoginUserCtx = useContext(LoginUserContext)
+
+    function pressSelectBtn(){
+        LoginUserCtx.changeUserLocation(Title)
+        LoginUserCtx.changeUserSubLocation(SubTitle)
+    }
+
     return (
-        <View style={styles.starLocation}>
-            <Text style={styles.starLocationText}>{children}</Text>
-        </View>
+        <TouchableOpacity onPress={pressSelectBtn} style={styles.starLocation}>
+            <Text style={styles.starLocationText}>{Title}</Text>
+        </TouchableOpacity>
     )
 }
 
