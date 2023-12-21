@@ -9,7 +9,7 @@ import { LoginUserContext } from "../../../store/LoginUser-context";
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
-export default function LocationSelectButton({ Icon, subTitle, Title, navi }: { Icon: string, subTitle: string, Title: string, navi: string }) {
+export default function LocationSelectButton({ Icon, subTitle, Title }: { Icon: string, subTitle: string, Title: string }) {
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
     const LoginUserCtx = useContext(LoginUserContext)
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
@@ -18,12 +18,13 @@ export default function LocationSelectButton({ Icon, subTitle, Title, navi }: { 
            await setIsFavorite(LoginUserCtx.favoriteLocation.includes(Title))
         }
         setFav()
+        // 데이터 전송 함수 !!!!!!
     })
     
     function pressSelectBtn(){
         LoginUserCtx.changeUserLocation(Title)
         LoginUserCtx.changeUserSubLocation(subTitle)
-        console.log(LoginUserCtx)
+        // console.log(LoginUserCtx)
     }
 
     async function pressStarBtn(){

@@ -49,8 +49,8 @@ function UserLoginContextProvider({ children }: any) {
     const [userSubLocation, setUserSubLocation] = useState('본관 3층')
     const [userLocation, setUserLocation] = useState('1학년 4반')
     const [userToken, setUserToken] = useState('null')
-    const [userFavoriteLocation, setUserFavoriteLocation] = useState<string[]>(['급식실'])
-    const [userFavoriteSubLocation, setUserFavoriteSubLocation] = useState<string[]>(['B1층'])
+    const [userFavoriteLocation, setUserFavoriteLocation] = useState<string[]>([])
+    const [userFavoriteSubLocation, setUserFavoriteSubLocation] = useState<string[]>([])
     
 
     function changeUserName(name: string) {

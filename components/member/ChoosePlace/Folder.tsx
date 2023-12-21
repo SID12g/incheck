@@ -4,13 +4,19 @@ import { Dimensions } from 'react-native';
 import { ParamListBase ,useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
+
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
-export default function Folder({ Icon, subTitle, Title, navi }: {Icon:string, subTitle: string, Title: string, navi: string}) {
+export default function Folder({ Icon, subTitle, Title, Building }: {Icon:string, subTitle: string, Title: string, Building: string }) {
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
     function handleFolderPress(){
-        navigation.navigate('B1Floor');
+        navigation.removeListener
+        navigation.navigate('FolderToLocation', {
+            Title: Title,
+            subTitle: subTitle,
+            Building: Building,
+        });
     };
     return (
         <TouchableOpacity onPress={handleFolderPress}>

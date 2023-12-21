@@ -29,14 +29,17 @@ export default function App() {
       (
         <LoginUserContext>
           <NavigationContainer>
-            <Stack.Navigator screenOptions={{
+            <Stack.Navigator
+            // initialRouteName='BottomTab'
+             screenOptions={{
               headerShown: false
             }}>
-              {/* <Stack.Screen name='Login' component={LoginScreen} />
-              <Stack.Screen name='AddUserInformation' component={AddUserInitialInformationScreen} /> */}
+              <Stack.Screen name='Login' component={LoginScreen} />
+              <Stack.Screen name='AddUserInformation' component={AddUserInitialInformationScreen} />
               <Stack.Screen name="BottomTab" component={BottomTabNavigator} />
               <Stack.Screen name="Home" component={MemberHomeScreen} />
               <Stack.Screen name="ChoosePlace" component={MemberChoosePlaceScreen} />
+              <Stack.Screen name="FolderToLocation" component={FolderToLocationScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </LoginUserContext>

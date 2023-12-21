@@ -16,6 +16,7 @@ export default function StarLocation({ Title, SubTitle }:{Title: string, SubTitl
     function pressSelectBtn(){
         LoginUserCtx.changeUserLocation(Title)
         LoginUserCtx.changeUserSubLocation(SubTitle)
+        // 데이터 전송 함수 !!!!!!!
     }
 
     return (

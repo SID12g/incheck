@@ -21,7 +21,7 @@ export default function LoginScreen() {
         });
     }, []);
 
-
+    
     const onPressGoogleBtn = async () => {
         try{
             await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
