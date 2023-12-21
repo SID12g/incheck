@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         width: windowWidth * 70,
         height: windowHeight * 70,
         backgroundColor: 'red',
-        borderRadius: 100,
+        borderRadius: 70,
         borderWidth: 1,
         borderColor: 'black',
         marginLeft: windowWidth * 15,

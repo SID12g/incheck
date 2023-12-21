@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useContext, useEffect, useState, } from "react";
 import { SafeAreaView, StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity } from "react-native";
 import { LoginUserContext } from "../../store/LoginUser-context";
+import { Alert } from "react-native";
 
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
@@ -27,16 +28,39 @@ export default function AddUserInitialInformationScreen() {
         setStudentId(id)
         // console.log(id)
     }
+    
 
     function pressCompleteBtn() {
-        LoginUserCtx.changeUserName(name)
-        LoginUserCtx.changeUserPhoneNumber(phoneNum)
-        LoginUserCtx.changeUserStudentId(studentId)
-        navigation.dispatch(
-                    CommonActions.reset({
-                        routes: [{ name: 'BottomTab' }]
-                    })
-                ) // 로그인 후 로그인 화면으로 돌아가지 못하게 함.
+        if(name === '' || phoneNum === '' || studentId === '' || studentId[0]>='4' || studentId[0] == '0' || studentId.length != 4 || studentId[1]>='7' || studentId[1] == '0') {
+            Alert.alert(
+                '알림',
+                '정보를 모두 올바르게 기입해주세요',
+                [
+                  {
+                    text: 'Ok',
+                    style: 'cancel',
+                  },
+                ],
+            )
+        } else {
+            LoginUserCtx.changeUserName(name)
+            LoginUserCtx.changeUserPhoneNumber(phoneNum)
+            LoginUserCtx.changeUserStudentId(studentId)
+            LoginUserCtx.changeUserLocation(`${studentId[0]}학년 ${studentId[1]}반`)
+            if(studentId[0] == '1') {
+                LoginUserCtx.changeUserSubLocation('본관 3층')
+            } else if(studentId[0] == '2') {
+                LoginUserCtx.changeUserSubLocation('본관 2층')
+            } else if(studentId[0] == '3') {
+                LoginUserCtx.changeUserSubLocation('신관 2층')
+            }
+            
+            navigation.dispatch(
+                        CommonActions.reset({
+                            routes: [{ name: 'BottomTab' }]
+                        })
+                    ) // 로그인 후 로그인 화면으로 돌아가지 못하게 함.
+        }
     }
 
     useEffect(()=>{
@@ -48,11 +72,11 @@ export default function AddUserInitialInformationScreen() {
         <SafeAreaView style={styles.root}>
             <View style={styles.inputWrap}>
                 <Text style={styles.inputTitle}>이름</Text>
-                <TextInput placeholder='이름을 입력하세요.' onChangeText={onChangeName} value={name} style={styles.input}></TextInput>
+                <TextInput placeholder='예) 홍길동' onChangeText={onChangeName} value={name} style={styles.input}></TextInput>
             </View>
             <View style={styles.inputWrap}>
                 <Text style={styles.inputTitle}>전화번호</Text>
-                <TextInput maxLength={11} keyboardType="phone-pad" placeholder='전화번호를 입력하세요.' onChangeText={onChangePhoneNum} value={phoneNum} style={styles.input}></TextInput>
+                <TextInput maxLength={11} keyboardType="phone-pad" placeholder='예) 01012345678' onChangeText={onChangePhoneNum} value={phoneNum} style={styles.input}></TextInput>
             </View>
             <View style={styles.inputWrap}>
                 <Text style={styles.inputTitle}>학번</Text>

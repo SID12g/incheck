@@ -47,7 +47,9 @@ export default function LoginScreen() {
 
     return (
         <SafeAreaView>
+            <View style={styles.logoWrap}>
             <Image style={styles.logo} source={require('../../public/image/incheck_logo.png')} />
+            </View>
             <Text style={styles.textLogo}>INCHECK</Text>
             {/* <TouchableOpacity onPress={clickLogin}>
                     <Text>Login</Text>
@@ -55,7 +57,9 @@ export default function LoginScreen() {
             <View>
                 <Text>{idToken}</Text>
                 <TouchableOpacity style={styles.GoogleLoginWrap} onPress={onPressGoogleBtn} >
+                    
                     <Image style={styles.GoogleLogo} source={require('../../public/image/google_logo.png')} />
+                    
                     <Text style={styles.GoogleText}>구글 계정으로 로그인</Text>
                 </TouchableOpacity>
             </View>
@@ -65,9 +69,13 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-    logo: {
+    logoWrap: {
         width: windowWidth * 127,
-        height: windowHeight * 148,
+        height: 'auto',
+        alignSelf: 'center'
+    },
+    logo: {
+       
         alignSelf: 'center',
         marginTop: windowHeight * 231,
     },
@@ -86,12 +94,12 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 1,
         alignItems: 'center',
-        marginTop: windowHeight*240,
+        marginTop: windowHeight*220,
         alignSelf: 'center'
     },
     GoogleLogo: {
         width: windowWidth * 23,
-        height: windowHeight * 23,
+        height: windowHeight * 25,
         marginLeft: windowWidth * 22,
         marginRight: windowWidth * 10,
     },
