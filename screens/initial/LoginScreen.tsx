@@ -11,6 +11,7 @@ const windowHeight = Dimensions.get('window').height / 852;
 
 export default function LoginScreen() {
     const [idToken, setIdToken] = useState('')
+    const [user, setUser] = useState({})
     const LoginUserCtx = useContext(LoginUserContext)
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
@@ -25,11 +26,14 @@ export default function LoginScreen() {
     const onPressGoogleBtn = async () => {
         try{
             await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-        const { idToken } = await GoogleSignin.signIn();
+        const { idToken, user } = await GoogleSignin.signIn();
         console.log('idToekn : ', idToken);
-        if (idToken) {
+        console.log('user : ', user)
+        if (idToken && user) {
             setIdToken(idToken);
+            setUser(user)
             LoginUserCtx.changeUserToken(idToken)
+            LoginUserCtx.changeUserGoogleInformation(user)
             navigation.dispatch(
                 CommonActions.reset({
                     routes: [{ name: 'AddUserInformation' }]

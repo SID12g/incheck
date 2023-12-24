@@ -1,9 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Dimensions } from 'react-native';
 import { CommonActions, ParamListBase, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { LoginUserContext } from "../../../store/LoginUser-context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
@@ -11,13 +11,22 @@ const windowHeight = Dimensions.get('window').height / 852;
 export default function UserInformation() {
     const LoginUserCtx = useContext(LoginUserContext)
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+    const phoneNumber = LoginUserCtx.phoneNumber
+    const [googleInformation, setGoogleInformation] = useState<{photo?: string}>({});
+    useEffect(()=>{
+        setGoogleInformation(LoginUserCtx.googleInformation)
+    }, [])
     return (
         <View>
-            <View style={styles.profileWrap}>
-                <View style={styles.profileImg}></View>
+            <View style={styles.profileWrap}> 
+                    <Image style={styles.profileImg} source={{uri: googleInformation.photo}} />
                 <View style={styles.textWrap}>
                     <Text style={styles.userName}>{LoginUserCtx.name}</Text>
-                    <Text style={styles.userEmail}>{LoginUserCtx.phoneNumber}</Text>
+                    <Text style={styles.userEmail}>
+                    {
+                            phoneNumber.length === 11 ? `${phoneNumber.slice(0, 3)}-${phoneNumber.slice(3, 7)}-${phoneNumber.slice(7)}` : `${phoneNumber}`
+                        }
+                    </Text>
                 </View>
             </View>
             <View style={styles.userHomeTownWrap}>
@@ -48,7 +57,6 @@ const styles = StyleSheet.create({
     profileImg: {
         width: windowWidth * 70,
         height: windowHeight * 70,
-        backgroundColor: 'red',
         borderRadius: 70,
         borderWidth: 1,
         borderColor: 'black',

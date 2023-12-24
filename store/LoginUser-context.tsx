@@ -7,6 +7,7 @@ interface User {
     subLocation: string;
     location: string;
     token: string;
+    googleInformation: any;
     favoriteLocation: string[];
     favoriteSubLocation: string[];
     changeUserName: any;
@@ -15,6 +16,7 @@ interface User {
     changeUserSubLocation: any;
     changeUserLocation: any;
     changeUserToken: any;
+    changeUserGoogleInformation: any;
     addUserFavoriteLocation: any;
     subtUserFavoriteLocation: any;
     addUserFavoriteSubLocation: any;
@@ -28,6 +30,7 @@ export const LoginUserContext = createContext({
     subLocation: '본관 3층',
     location: "104class",
     token: 'null',
+    googleInformation: {},
     favoriteLocation: ['1학년 4반', '물 화장실'],
     favoriteSubLocation: [''],
     changeUserName: (name: string) => { },
@@ -36,6 +39,7 @@ export const LoginUserContext = createContext({
     changeUserSubLocation: (location: string) => { },
     changeUserLocation: (location: string) => { },
     changeUserToken: (token: string) => { },
+    changeUserGoogleInformation: (user: any) => { },
     addUserFavoriteLocation: (favoriteLocation: string) => { },
     subtUserFavoriteLocation: (favoriteLocation: string) => { },
     addUserFavoriteSubLocation: (favoriteLocation: string) => { },
@@ -49,6 +53,7 @@ function UserLoginContextProvider({ children }: any) {
     const [userSubLocation, setUserSubLocation] = useState('본관 3층')
     const [userLocation, setUserLocation] = useState('1학년 4반')
     const [userToken, setUserToken] = useState('null')
+    const [userGoogleInformation, setUserGoogleInformation] = useState({})
     const [userFavoriteLocation, setUserFavoriteLocation] = useState<string[]>([])
     const [userFavoriteSubLocation, setUserFavoriteSubLocation] = useState<string[]>([])
     
@@ -70,6 +75,9 @@ function UserLoginContextProvider({ children }: any) {
     }
     function changeUserToken(token: string){
         setUserToken(token)
+    }
+    function changeUserGoogleInformation(user: any){
+        setUserGoogleInformation(user)
     }
     function addUserFavoriteLocation(favoriteLocation: string) {
         setUserFavoriteLocation(
@@ -94,6 +102,7 @@ function UserLoginContextProvider({ children }: any) {
         subLocation: userSubLocation,
         location: userLocation,
         token: userToken,
+        googleInformation: userGoogleInformation,
         favoriteLocation: userFavoriteLocation,
         favoriteSubLocation: userFavoriteSubLocation,
         changeUserName: changeUserName,
@@ -102,6 +111,7 @@ function UserLoginContextProvider({ children }: any) {
         changeUserSubLocation: changeUserSubLocation,
         changeUserLocation: changeUserLocation,
         changeUserToken: changeUserToken,
+        changeUserGoogleInformation: changeUserGoogleInformation,
         addUserFavoriteLocation: addUserFavoriteLocation,
         subtUserFavoriteLocation: subtUserFavoriteLocation,
         addUserFavoriteSubLocation: addUserFavoriteSubLocation,
