@@ -9,6 +9,9 @@ import LoginUserContext from './store/LoginUser-context';
 import AddUserInitialInformationScreen from './screens/initial/AddUserInitialInformationScreen';
 import FolderToLocationScreen from './screens/member/ChoosePlace/FolderToLocationScreen';
 import MemberHomeScreen from './screens/member/HomeScreen';
+import SplashScreen from "react-native-splash-screen";
+
+
 
 const Stack = createStackNavigator()
 
@@ -19,6 +22,11 @@ const first = true
 const LoginUser = { name: 'userName', grade: 1, class: 4, number: 27, location: '104class' }
 
 export default function App() {
+  React.useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 1000); //스플래시 활성화 시간
+  });
   return (
     false ?
       (
