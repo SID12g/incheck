@@ -43,6 +43,8 @@ export default function AddUserInitialInformationScreen() {
                 ],
             )
         } else {
+            //db
+            console.log('aaaa', LoginUserCtx)
             LoginUserCtx.changeUserName(name)
             LoginUserCtx.changeUserPhoneNumber(phoneNum)
             LoginUserCtx.changeUserStudentId(studentId)

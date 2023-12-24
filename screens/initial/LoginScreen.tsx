@@ -1,74 +1,84 @@
-import { Image, SafeAreaView, StyleSheet, View, Dimensions, Text, TouchableOpacity, Button } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { Image, SafeAreaView, StyleSheet, View, Dimensions, Text, TouchableOpacity } from "react-native";
 import { CommonActions, ParamListBase, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { LoginUserContext } from "../../store/LoginUser-context";
-import { useContext, useEffect, useState, } from "react";
-import { GoogleSignin, GoogleSigninButton, statusCodes, } from '@react-native-google-signin/google-signin';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore'
 
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
 export default function LoginScreen() {
-    const [idToken, setIdToken] = useState('')
-    const [user, setUser] = useState({})
     const LoginUserCtx = useContext(LoginUserContext)
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+    const studentId = LoginUserCtx.studentId
+    const [idToken, setIdToken] = useState('');
 
-   
     useEffect(() => {
         GoogleSignin.configure({
             webClientId: '630749287407-ro1v0dj6bkjuur3je2l3i8fa4tvhdbln.apps.googleusercontent.com',
         });
     }, []);
 
-    
     const onPressGoogleBtn = async () => {
-        try{
+        try {
             await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-        const { idToken, user } = await GoogleSignin.signIn();
-        console.log('idToekn : ', idToken);
-        console.log('user : ', user)
-        if (idToken && user) {
-            setIdToken(idToken);
-            setUser(user)
-            LoginUserCtx.changeUserToken(idToken)
-            LoginUserCtx.changeUserGoogleInformation(user)
-            navigation.dispatch(
-                CommonActions.reset({
-                    routes: [{ name: 'AddUserInformation' }]
-                })
-            ) // 로그인 후 로그인 화면으로 돌아가지 못하게 함.
-        }
-        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-        const res = await auth().signInWithCredential(googleCredential);
-        } catch(error) {
-            console.log("google login error", error)
+            const { idToken, user } = await GoogleSignin.signIn();
+            console.log('user : ', user)
+
+            if (idToken && user) {
+                LoginUserCtx.changeUserGoogleInformation(user);
+
+                // 문서가 존재하는지 확인
+                const docSnapshot = await firestore().collection('dimigo').doc(studentId).get();
+
+                if (docSnapshot.exists) {
+                    // 문서가 존재하면 데이터를 가져옵니다.
+                    const existingData = docSnapshot.data();
+                    // 기존 데이터로 무언가를 수행합니다.
+                } else {
+                    // 문서가 존재하지 않으면 문서를 만들고 데이터를 설정합니다.
+                    await firestore().collection('dimigo').doc(studentId).set({
+                        name: LoginUserCtx.name,
+                        studentId: LoginUserCtx.studentId,
+                        phoneNumber: LoginUserCtx.phoneNumber,
+                        subLocation: LoginUserCtx.subLocation,
+                        location: LoginUserCtx.location,
+                        googleInformation: LoginUserCtx.googleInformation,
+                        favoriteLocation: LoginUserCtx.favoriteLocation,
+                        favoriteSubLocation: LoginUserCtx.favoriteSubLocation
+                    });
+                }
+
+                navigation.dispatch(
+                    CommonActions.reset({
+                        routes: [{ name: 'AddUserInformation' }]
+                    })
+                );
+            }
+
+            const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+            const res = await auth().signInWithCredential(googleCredential);
+        } catch (error) {
+            console.log("google login error", error);
         }
     };
-
-
 
     return (
         <SafeAreaView>
             <View style={styles.logoWrap}>
-            <Image style={styles.logo} source={require('../../public/image/incheck_logo.png')} />
+                <Image style={styles.logo} source={require('../../public/image/incheck_logo.png')} />
             </View>
             <Text style={styles.textLogo}>INCHECK</Text>
-            {/* <TouchableOpacity onPress={clickLogin}>
-                    <Text>Login</Text>
-                </TouchableOpacity> */}
             <View>
-                <Text>{idToken}</Text>
                 <TouchableOpacity style={styles.GoogleLoginWrap} onPress={onPressGoogleBtn} >
-                    
                     <Image style={styles.GoogleLogo} source={require('../../public/image/google_logo.png')} />
-                    
                     <Text style={styles.GoogleText}>구글 계정으로 로그인</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
-
     )
 }
 
@@ -79,7 +89,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     logo: {
-       
         alignSelf: 'center',
         marginTop: windowHeight * 231,
     },
@@ -98,7 +107,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 1,
         alignItems: 'center',
-        marginTop: windowHeight*220,
+        marginTop: windowHeight * 220,
         alignSelf: 'center'
     },
     GoogleLogo: {
@@ -112,4 +121,4 @@ const styles = StyleSheet.create({
         fontFamily: 'Pretendard-SemiBold',
         color: '#929292',
     },
-})
+});

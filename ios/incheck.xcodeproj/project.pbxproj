@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* incheckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* incheckTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-incheck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-incheck.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -20,11 +19,12 @@
 		5F695D402B3264C0005EC398 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 5F695D3F2B3264BF005EC398 /* main.jsbundle */; };
 		5F695D462B32DC95005EC398 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F695D452B32DC95005EC398 /* GoogleService-Info.plist */; };
 		671AD4AE9874435C9E7F91EA /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA7BF8AFC5F940FDB74C098A /* Pretendard-Bold.ttf */; };
+		67A8974432D23C3D44502864 /* Pods_incheck_incheckTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC862F18A589C207F498D3AF /* Pods_incheck_incheckTests.framework */; };
 		6F9A4A6C9EF2407BA7B5D3A6 /* Pretendard-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 836B4FFD54984F85ADE62902 /* Pretendard-Thin.ttf */; };
-		7699B88040F8A987B510C191 /* libPods-incheck-incheckTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-incheck-incheckTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		AB00089537C940E6A6E25526 /* Pretendard-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C5341CADFB134051A36F7F05 /* Pretendard-Black.ttf */; };
 		D35F31B8BAB640FD844DC80B /* Pretendard-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35820580A26F499FA5674E8E /* Pretendard-ExtraBold.ttf */; };
+		E48C13D01F81F6445E396F0E /* Pods_incheck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BED9E6285A27A498482268 /* Pods_incheck.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,12 +47,11 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = incheck/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = incheck/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = incheck/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-incheck-incheckTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-incheck-incheckTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21BED9E6285A27A498482268 /* Pods_incheck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_incheck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35820580A26F499FA5674E8E /* Pretendard-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-ExtraBold.ttf"; path = "../assets/fonts/Pretendard-ExtraBold.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-incheck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incheck.debug.xcconfig"; path = "Target Support Files/Pods-incheck/Pods-incheck.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-incheck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incheck.release.xcconfig"; path = "Target Support Files/Pods-incheck/Pods-incheck.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-incheck-incheckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incheck-incheckTests.debug.xcconfig"; path = "Target Support Files/Pods-incheck-incheckTests/Pods-incheck-incheckTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-incheck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-incheck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F695D3F2B3264BF005EC398 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		5F695D452B32DC95005EC398 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F99BF752B2C7A5F00589859 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
@@ -80,6 +79,7 @@
 		89C6BE57DB24E9ADA2F236DE /* Pods-incheck-incheckTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-incheck-incheckTests.release.xcconfig"; path = "Target Support Files/Pods-incheck-incheckTests/Pods-incheck-incheckTests.release.xcconfig"; sourceTree = "<group>"; };
 		8DEF4399812848BCA1D44F89 /* Pretendard-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-ExtraLight.ttf"; path = "../assets/fonts/Pretendard-ExtraLight.ttf"; sourceTree = "<group>"; };
 		98687C1E62D24478A35BBBB4 /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Medium.ttf"; path = "../assets/fonts/Pretendard-Medium.ttf"; sourceTree = "<group>"; };
+		BC862F18A589C207F498D3AF /* Pods_incheck_incheckTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_incheck_incheckTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5341CADFB134051A36F7F05 /* Pretendard-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Black.ttf"; path = "../assets/fonts/Pretendard-Black.ttf"; sourceTree = "<group>"; };
 		C542D97B8EFE428390F2EF0D /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Regular.ttf"; path = "../assets/fonts/Pretendard-Regular.ttf"; sourceTree = "<group>"; };
 		CBDA6FA107C84C41AA546596 /* Pretendard-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Light.ttf"; path = "../assets/fonts/Pretendard-Light.ttf"; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-incheck-incheckTests.a in Frameworks */,
+				67A8974432D23C3D44502864 /* Pods_incheck_incheckTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-incheck.a in Frameworks */,
+				E48C13D01F81F6445E396F0E /* Pods_incheck.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,8 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-incheck.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-incheck-incheckTests.a */,
+				21BED9E6285A27A498482268 /* Pods_incheck.framework */,
+				BC862F18A589C207F498D3AF /* Pods_incheck_incheckTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -676,6 +676,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
@@ -749,6 +760,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
