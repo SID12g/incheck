@@ -6,7 +6,9 @@ interface User {
     phoneNumber: string;
     subLocation: string;
     location: string;
-    googleInformation: any;
+    googleInformation: {
+        email?: string
+    };
     favoriteLocation: string[];
     favoriteSubLocation: string[];
     changeUserName: any;
@@ -15,8 +17,10 @@ interface User {
     changeUserSubLocation: any;
     changeUserLocation: any;
     changeUserGoogleInformation: any;
+    changeFavoriteLocation: any;
     addUserFavoriteLocation: any;
     subtUserFavoriteLocation: any;
+    changeFavoriteSubLocation: any;
     addUserFavoriteSubLocation: any;
     subtUserFavoriteSubLocation: any;
 }
@@ -27,7 +31,9 @@ export const LoginUserContext = createContext({
     phoneNumber: '01093563160',
     subLocation: '본관 3층',
     location: "104class",
-    googleInformation: {},
+    googleInformation: {
+        
+    },
     favoriteLocation: ['1학년 4반', '물 화장실'],
     favoriteSubLocation: [''],
     changeUserName: (name: string) => { },
@@ -36,8 +42,10 @@ export const LoginUserContext = createContext({
     changeUserSubLocation: (location: string) => { },
     changeUserLocation: (location: string) => { },
     changeUserGoogleInformation: (user: any) => { },
+    changeFavoriteLocation: (loc: any)=>{},
     addUserFavoriteLocation: (favoriteLocation: string) => { },
     subtUserFavoriteLocation: (favoriteLocation: string) => { },
+    changeFavoriteSubLocation: (loc: any)=>{},
     addUserFavoriteSubLocation: (favoriteLocation: string) => { },
     subtUserFavoriteSubLocation: (favoriteLocation: string) => { },
 });
@@ -71,12 +79,18 @@ function UserLoginContextProvider({ children }: any) {
     function changeUserGoogleInformation(user: any){
         setUserGoogleInformation(user)
     }
+    function changeFavorteLocation(loc: any){
+        setUserFavoriteLocation(loc)
+    }
     function addUserFavoriteLocation(favoriteLocation: string) {
         setUserFavoriteLocation(
             (currentFavoriteLocation: string[]) => [...currentFavoriteLocation, favoriteLocation])
     }
     function subtUserFavoriteLocation(favoriteLocation: string) {
         setUserFavoriteLocation((currentFavoriteLocation: string[]) => currentFavoriteLocation.filter(inputFavLoc => inputFavLoc !== favoriteLocation))
+    }
+    function chageFavoriteSubLocation(loc: any){
+        setUserFavoriteSubLocation(loc)
     }
     function addUserFavoriteSubLocation(favoriteSubLocation: string) {
         setUserFavoriteSubLocation(
@@ -102,8 +116,10 @@ function UserLoginContextProvider({ children }: any) {
         changeUserSubLocation: changeUserSubLocation,
         changeUserLocation: changeUserLocation,
         changeUserGoogleInformation: changeUserGoogleInformation,
+        changeFavoriteLocation: changeFavorteLocation,
         addUserFavoriteLocation: addUserFavoriteLocation,
         subtUserFavoriteLocation: subtUserFavoriteLocation,
+        changeFavoriteSubLocation: chageFavoriteSubLocation,
         addUserFavoriteSubLocation: addUserFavoriteSubLocation,
         subtUserFavoriteSubLocation: subtUserFavoriteSubLocation,
     }

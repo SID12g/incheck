@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Image, SafeAreaView, StyleSheet, View, Dimensions, Text, TouchableOpacity } from "react-native";
 import { CommonActions, ParamListBase, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -26,37 +26,42 @@ export default function LoginScreen() {
         try {
             await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
             const { idToken, user } = await GoogleSignin.signIn();
-            console.log('user : ', user)
+            console.log('user : ', user);
 
             if (idToken && user) {
                 LoginUserCtx.changeUserGoogleInformation(user);
 
                 // 문서가 존재하는지 확인
-                const docSnapshot = await firestore().collection('dimigo').doc(studentId).get();
+                const docSnapshot = await firestore().collection('dimigo').doc(user.email).get();
 
                 if (docSnapshot.exists) {
                     // 문서가 존재하면 데이터를 가져옵니다.
                     const existingData = docSnapshot.data();
+                    console.log('Existing Data:', existingData);
+                    await LoginUserCtx.changeFavoriteLocation(existingData?.favoriteLocation)
+                    await LoginUserCtx.changeFavoriteSubLocation(existingData?.favoriteSubLocation)
+                    await LoginUserCtx.changeUserGoogleInformation(existingData?.googleInformation)
+                    await LoginUserCtx.changeUserName(existingData?.name)
+                    await LoginUserCtx.changeUserPhoneNumber(existingData?.phoneNumber)
+                    await LoginUserCtx.changeUserStudentId(existingData?.studentId)
+                    await LoginUserCtx.changeUserLocation(existingData?.location)
+                    await LoginUserCtx.changeUserSubLocation(existingData?.subLocation)
                     // 기존 데이터로 무언가를 수행합니다.
+                    
+                    navigation.dispatch(
+                        CommonActions.reset({
+                            routes: [{ name: 'BottomTab' }]
+                        })
+                    )
                 } else {
                     // 문서가 존재하지 않으면 문서를 만들고 데이터를 설정합니다.
-                    await firestore().collection('dimigo').doc(studentId).set({
-                        name: LoginUserCtx.name,
-                        studentId: LoginUserCtx.studentId,
-                        phoneNumber: LoginUserCtx.phoneNumber,
-                        subLocation: LoginUserCtx.subLocation,
-                        location: LoginUserCtx.location,
-                        googleInformation: LoginUserCtx.googleInformation,
-                        favoriteLocation: LoginUserCtx.favoriteLocation,
-                        favoriteSubLocation: LoginUserCtx.favoriteSubLocation
-                    });
+                    LoginUserCtx.changeUserGoogleInformation(user)
+                    navigation.dispatch(
+                        CommonActions.reset({
+                            routes: [{ name: 'AddUserInformation' }]
+                        })
+                    );
                 }
-
-                navigation.dispatch(
-                    CommonActions.reset({
-                        routes: [{ name: 'AddUserInformation' }]
-                    })
-                );
             }
 
             const googleCredential = auth.GoogleAuthProvider.credential(idToken);

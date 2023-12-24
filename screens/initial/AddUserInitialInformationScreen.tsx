@@ -4,6 +4,7 @@ import { useContext, useEffect, useState, } from "react";
 import { SafeAreaView, StyleSheet, Text, TextInput, View, Dimensions, TouchableOpacity } from "react-native";
 import { LoginUserContext } from "../../store/LoginUser-context";
 import { Alert } from "react-native";
+import firestore from '@react-native-firebase/firestore'
 
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
@@ -28,46 +29,68 @@ export default function AddUserInitialInformationScreen() {
         setStudentId(id)
         // console.log(id)
     }
-    
 
-    function pressCompleteBtn() {
-        if(name === '' || phoneNum === '' || studentId === '' || studentId[0]>='4' || studentId[0] == '0' || studentId.length != 4 || studentId[1]>='7' || studentId[1] == '0') {
-            Alert.alert(
-                '알림',
-                '정보를 모두 올바르게 기입해주세요',
-                [
-                  {
-                    text: 'Ok',
-                    style: 'cancel',
-                  },
-                ],
-            )
-        } else {
-            //db
-            console.log('aaaa', LoginUserCtx)
-            LoginUserCtx.changeUserName(name)
-            LoginUserCtx.changeUserPhoneNumber(phoneNum)
-            LoginUserCtx.changeUserStudentId(studentId)
-            LoginUserCtx.changeUserLocation(`${studentId[0]}학년 ${studentId[1]}반`)
-            if(studentId[0] == '1') {
-                LoginUserCtx.changeUserSubLocation('본관 3층')
-            } else if(studentId[0] == '2') {
-                LoginUserCtx.changeUserSubLocation('본관 2층')
-            } else if(studentId[0] == '3') {
-                LoginUserCtx.changeUserSubLocation('신관 2층')
-            }
-            
-            navigation.dispatch(
+
+    async function pressCompleteBtn() {
+        try {
+            if (name === '' || phoneNum === '' || studentId === '' || studentId[0] >= '4' || studentId[0] == '0' || studentId.length != 4 || studentId[1] >= '7' || studentId[1] == '0') {
+                Alert.alert(
+                    '알림',
+                    '정보를 모두 올바르게 기입해주세요',
+                    [
+                        {
+                            text: 'Ok',
+                            style: 'cancel',
+                        },
+                    ],
+                );
+            } else {
+                await LoginUserCtx.changeUserName(name);
+                await LoginUserCtx.changeUserPhoneNumber(phoneNum);
+                await LoginUserCtx.changeUserStudentId(studentId);
+                await LoginUserCtx.changeUserLocation(`${studentId[0]}학년 ${studentId[1]}반`);
+
+                let subLocation = '';
+                if (studentId[0] == '1') {
+                    subLocation = '본관 3층';
+                } else if (studentId[0] == '2') {
+                    subLocation = '본관 2층';
+                } else if (studentId[0] == '3') {
+                    subLocation = '신관 2층';
+                }
+                await LoginUserCtx.changeUserSubLocation(subLocation);
+
+                if (LoginUserCtx.name != '' && LoginUserCtx.phoneNumber != '' && LoginUserCtx.studentId != '' && LoginUserCtx.subLocation != '') {
+                    console.log('setchange!!!!', LoginUserCtx)
+                    const userEmail = LoginUserCtx.googleInformation.email;
+                    firestore().collection('dimigo').doc(userEmail).set({
+                        name: LoginUserCtx.name,
+                        studentId: LoginUserCtx.studentId,
+                        phoneNumber: LoginUserCtx.phoneNumber,
+                        subLocation: LoginUserCtx.subLocation,
+                        location: LoginUserCtx.location,
+                        googleInformation: LoginUserCtx.googleInformation,
+                        favoriteLocation: LoginUserCtx.favoriteLocation,
+                        favoriteSubLocation: LoginUserCtx.favoriteSubLocation
+                    });
+                    navigation.dispatch(
                         CommonActions.reset({
                             routes: [{ name: 'BottomTab' }]
                         })
-                    ) // 로그인 후 로그인 화면으로 돌아가지 못하게 함.
+                    ); // 로그인 후 로그인 화면으로 돌아가지 못하게 함.
+                }
+
+               
+            }
+        } catch (error) {
+            console.error('pressCompleteBtn 오류:', error);
         }
     }
 
-    useEffect(()=>{
+
+    useEffect(() => {
         console.log(LoginUserCtx)
-    },[LoginUserCtx])
+    }, [LoginUserCtx])
 
 
     return (

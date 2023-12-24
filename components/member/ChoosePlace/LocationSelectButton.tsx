@@ -5,7 +5,7 @@ import { Dimensions } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useContext, useEffect, useState, } from "react";
 import { LoginUserContext } from "../../../store/LoginUser-context";
-
+import firestore from '@react-native-firebase/firestore'
 const windowWidth = Dimensions.get('window').width / 393;
 const windowHeight = Dimensions.get('window').height / 852;
 
@@ -13,11 +13,23 @@ export default function LocationSelectButton({ Icon, subTitle, Title }: { Icon: 
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
     const LoginUserCtx = useContext(LoginUserContext)
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+    const userDoc = firestore().collection('dimigo').doc(LoginUserCtx.googleInformation.email)
     useEffect(()=>{
         async function setFav(){
            await setIsFavorite(LoginUserCtx.favoriteLocation.includes(Title))
         }
+        async function goDb(){
+            
+            userDoc.update(
+                {'location': LoginUserCtx.location,
+                'subLocation': LoginUserCtx.subLocation,
+                'favoriteLocation': LoginUserCtx.favoriteLocation, 
+                'favoriteSubLocation': LoginUserCtx.favoriteSubLocation
+            }
+            )
+        }
         setFav()
+        goDb()
         // 데이터 전송 함수 !!!!!!
     })
     
@@ -31,10 +43,12 @@ export default function LocationSelectButton({ Icon, subTitle, Title }: { Icon: 
         if(isFavorite) {
             await LoginUserCtx.subtUserFavoriteLocation(Title)
             await LoginUserCtx.subtUserFavoriteSubLocation(subTitle)
+            
             // console.log('true -> false')
         } else {
             await LoginUserCtx.addUserFavoriteLocation(Title)
             await LoginUserCtx.addUserFavoriteSubLocation(subTitle)
+            
             // console.log('f -> t')
         }
 
