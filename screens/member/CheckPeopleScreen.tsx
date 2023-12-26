@@ -139,7 +139,7 @@ export default function MemberCheckPeopleScreen() {
                         <Text style={styles.frameText}>현재 인원</Text>
                         <View style={styles.NumPeopleWrap}>
                             <NumPeople Content="총원" Pnumber={documentCount} />
-                            <NumPeople Content="현원" Pnumber={inClassCount} />
+                            <NumPeople Content="현원" Pnumber={documentCount-otherCount} />
                             <NumPeople Content="결원" Pnumber={otherCount} />
                         </View>
                     </View>
