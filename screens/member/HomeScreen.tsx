@@ -55,7 +55,7 @@ export default function MemberHomeScreen() {
     return (
         <SafeAreaView style={styles.root}>
             <View style={styles.logoWrap}>
-                <Image resizeMode="center" style={styles.logo} source={require('../../public/image/incheck_logo.png')} />
+            <Image resizeMode="center" style={styles.logo} source={require('../../public/image/incheck_logo.png')} />
             </View>
             <View style={styles.locationContainer}>
                 <View style={styles.topUtil}>
